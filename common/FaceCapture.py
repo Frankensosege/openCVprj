@@ -33,6 +33,7 @@ class CapFace:
             sys.exit()
 
         idx = 0
+        capok = False
         while True:
             ret, frame = cap.read()
             if not ret:
@@ -57,15 +58,19 @@ class CapFace:
                     cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255), 1, cv2.LINE_AA)
                     cv2.putText(frame, text, (x1, y1 - 3), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 1, cv2.LINE_AA)
 
-                    file_name = 'face_{0:04d}.jpg'.format(idx)
-                    idx += 1
-                    save_img = frame[y1:y2, x1:x2, :]
-                    cv2.imwrite(self.fampath + file_name, save_img)
+                    if capok :
+                        file_name = 'face_{0:04d}.jpg'.format(idx)
+                        idx += 1
+                        save_img = frame[y1:y2, x1:x2, :]
+                        cv2.imwrite(self.fampath + file_name, save_img)
+                        capok = False
 
             cv2.imshow('image', frame)
             key = cv2.waitKey(20)
             if key == 27 or key == ord('q'):
                 break
+            elif key == ord('c'):
+                capok = True
 
         cv2.destroyAllWindows()
 
