@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form method="post" action="{% url 'famcam:main' %}">
+    {% csrf_token %}
+    {% include "form_errors.html" %}
+    <select class="form-select" aria-label="Default select example" name="famYn" id="famYn" >
+      <option value="F" selected>가족</option>
+      <option value="O">악당</option>
+    </select>
+    <select class="form-select" aria-label="Default select example" name="selSRC" id="selSRC" >
+      <option value="C" selected>Camera</option>
+      <option value="I">Image</option>
+    </select>
+    <div class="mb-3 mt-3">
+        <label for="fpath">원본사진경로</label>
+        <input type="text" class="form-control" name="fpath" id="fpath" maxlength="500" value="./data/source/etc/">
+    </div>
+    <button type="submit" class="btn btn-primary">캡처</button>
+</form>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% load static %}
+<!doctype html>
+<html lang="ko">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <title>{% block title %}Demo{% endblock %}</title>
+</head>
+<!-- Bootstrap JS -->
+<script src="{% static 'bootstrap.min.js' %}"></script>
+<body>
+    <div class="topnav">
+        <div class="center">
+            <div class="menu">
+                <!-- 네비게이션바 -->
+                {% include "navbar.html" %}
+            </div>
+        </div>
+    </div>
+
+    <div class="sidemenu">
+        <ul>
+            <li><a href="{% url 'famcam:main' %}">home</a></li>
+            <li><a href="#">board</a></li>
+            <li><a href="#">menu3</a></li>
+            <li><a href="#">menu4</a></li>
+        </ul>
+    </div>
+<!-- 기본 템플릿 안에 삽입될 내용 Start -->
+    <div class="wrap_content">
+        <div id="content" name="content" class="container">
+        {% block content %}
+        {% endblock %}
+        </div>
+    </div>
+<!-- 기본 템플릿 안에 삽입될 내용 End -->
+</body>
+</html>
+
+
+
